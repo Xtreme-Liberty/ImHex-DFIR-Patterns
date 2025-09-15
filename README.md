@@ -1,4 +1,3 @@
-[FAT32_Report.txt](https://github.com/user-attachments/files/22338114/FAT32_Report.txt)# ImHex-DFIR-Hexpats
 ImHex Pattern Files - Digital Forensics
 
 Enhanced features of the stock Disk/Filesystem pattern files for forensic review of disk content.
@@ -69,7 +68,7 @@ Use:
 
   - Optional Reports
 
-[UploadiI:            # # # #   # #   
+I:            # # # #   # #   
 I:            #     #     #   
 I:            #     #     #   
 I:            # # # #   # # # 
@@ -164,5 +163,5 @@ I:             |- - - - > NONE
 I:  PART_TYPE_NAME      = disk image
 I: -----------------------------------------
 I: ------------------ END ------------------
-I: -----------------------------------------ng FAT32_Report.txt…]()
+I: -----------------------------------------
 

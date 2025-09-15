@@ -1,0 +1,136 @@
+I:            # # # #   # #   
+I:            #     #     #   
+I:            #     #     #   
+I:            # # # #   # # # 
+I:             I  m  H  e  x    
+ 
+I: -----------------------------------------
+ 
+I:   ENTITY: _____________________
+ 
+I: EXAMINER: _____________________
+ 
+I: -----------------------------------------
+I:    LOCAL: 09/15/2025 @ 06:52:00
+I:      UTC: 09/15/2025 @ 10:52:00
+I: -----------------------------------------
+ 
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL        	= EFI        
+I: FILE_SYSTEM      	= FAT32   
+I: SERIAL_NUMBER    	= 0x67E317ED
+I: -----------------------------------------
+I: BYTES/SECTOR     	= 512
+I: SECTORS/CLUSTER  	= 01
+I: BYTES/CLUSTER    	= 512
+I: ROOT_ENTRIES     	= 00
+I: CLUSTER_COUNT    	= 403266
+I: -----------------------------------------
+I: VOLUME_SIZE      	= 409600 SECTORS
+I: VOLUME_SIZE      	= 0.2097 GB  @ 1000
+I: VOLUME_SIZE      	= 0.1953 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS 	= 32
+I: FAT_COUNT        	= 02
+I: FAT_SIZE         	= 3151 SECTORS
+I: FAT1_START_OFF   	= 16384 | 0x4000
+I: FAT2_START_OFF   	= 1629696 | 0x18DE00
+I: ROOT_DIR_CLUSTER 	= 02
+I: ROOT_DIR_OFFSET  	= 3243008 | 0x317C00
+I: -----------------------------------------
+I: FAT1_EOF_COUNT   	= 01
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+I: -----------------------------------------
+I: ---------- EXFAT VOLUME_REPORT ----------
+I: -----------------------------------------
+I: FILE_SYSTEM      	= EXFAT   
+I: SERIAL_NUMBER    	= 0x68AA9333
+I: FS_REVISION      	= 1.0
+I: VOL_FLAGS            = NONE
+I: -----------------------------------------
+I: BYTES/SECTOR     	= 512
+I: SECTORS/CLUSTER  	= 64
+I: BYTES/CLUSTER    	= 32768
+I: CLUSTER_COUNT    	= 115598
+I: -----------------------------------------
+I: VOLUME_SIZE      	= 7399424 SECTORS
+I: VOLUME_SIZE      	= 3.7885 GB  @ 1000
+I: VOLUME_SIZE      	= 3.5283 GiB @ 1024
+I: -----------------------------------------
+I: VOLUME_START_SEC 	= 411648
+I: VOLUME_START_OFF 	= 0xC900000
+I: FAT1_START_OFF   	= 0x10000
+I: CLUSTER_HEAP_OFF 	= 0x90000
+I: ROOT_DIR_CLUSTER 	= 04
+I: ROOT_DIR_OFFSET  	= 0xC9A0000
+I: -----------------------------------------
+I: PERCENT_IN_USE   	= 00 %
+I: NUMBER_OF_FATS   	= 01
+I: DRIVE_SELECT     	= 0x80
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+I: -----------------------------------------
+I: -------------- DISK_REPORT --------------
+I: -----------------------------------------
+I: DISK_PATH            = /dev/disk7
+I: SECTOR_SIZE          = 512 BYTES
+I: DISK_SIZE            = 7812540 SECTORS
+I: DISK_SIZE            = 4.0000 GB  @ 1000
+I: DISK_SIZE            = 3.7253 GiB @ 1024
+I: DISK_PROTECT         = NOT_COPY_PROTECTED
+I: PART_SCHEME          = HYBRID (MBR + GPT)
+I: -----------------------------------------
+I: -------------- MBR_MPT [0] --------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = GPT_PROTECTIVE (0xEE)
+I:  FIRST_LBA           = 01
+I:  LAST_LBA            = 7812539
+I:  VOL_SIZE            = 7812539 SECTORS
+I:  VOL_SIZE            = 4.0000 GB
+I:  VOL_SIZE            = 3.7253 GiB
+I: -----------------------------------------
+I: -------------- GPT_HEADER ---------------
+I: -----------------------------------------
+I: SIGNATURE            = "EFI PART"
+I: REVISION             = 0x10000
+I: GPT_HDR_CRC          = 0x51F56DD0
+I: GPT_HDR_BACKUP_LBA   = 7812539
+I: DISK_GUID            = {2C88B1C4-4D04-4153-A78F-F8F30648213B}
+I: FIRST_USABLE_LBA     = 34
+I: LAST_USABLE_LBA      = 7812506
+I: MAX_GPT_ENTRIES      = 128
+I: GPT_ENTRY_SIZE       = 128 BYTES
+I: GPT_ARRAY_CRC        = 0xDA437713
+I: -----------------------------------------
+I: ------------- GPT_PART [0] --------------
+I: -----------------------------------------
+I:  PART_TYPE_LABEL     = GUIDPartLabel::EFI_SYSTEM_PART
+I:  PART_TYPE_GUID      = {C12A7328-F81F-11D2-BA4B-00A0C93EC93B}
+I:  UNIQUE_PART_GUID    = {84587B9F-F5C1-4C71-9684-2857BEC381A0}
+I:  FIRST_LBA           = 40
+I:  LAST_LBA            = 409639
+I:  ATTR_FLAGS |
+I:             |- - - - > NONE
+I:  PART_TYPE_NAME      = EFI System Partition
+I: -----------------------------------------
+I: ------------- GPT_PART [1] --------------
+I: -----------------------------------------
+I:  PART_TYPE_LABEL     = GUIDPartLabel::BASIC_DATA_PART
+I:  PART_TYPE_GUID      = {EBD0A0A2-B9E5-4433-87C0-68B6B72699C7}
+I:  UNIQUE_PART_GUID    = {5D6622FC-0B9A-4D58-A124-080D7A2A838C}
+I:  FIRST_LBA           = 411648
+I:  LAST_LBA            = 7811071
+I:  ATTR_FLAGS |
+I:             |- - - - > NONE
+I:  PART_TYPE_NAME      = disk image
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------

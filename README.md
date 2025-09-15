@@ -17,7 +17,6 @@ Use:
 
 
 
-/patterns/DFIR/
   - DISK_PARSER.hexpat
       - Recognize MBR/GPT Disks and parse MPT/GPT
       - Auto load file system patterns for FAT32, exFAT, NTFS formatted volumes

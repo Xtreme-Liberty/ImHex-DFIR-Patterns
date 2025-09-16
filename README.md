@@ -110,12 +110,12 @@ VOLUME > NTFS > Data Pointer
         - "true" = enabled
         - "false" = disabled
 
-  Example Report: exFAT
+  Example Report: GPT > FAT32|exFAT
   
-    [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
+  - [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
   
-  Example Report: 5 Logical Volumes (2 in an Extended) > All FAT32
+  Example Report: MBR > 5 Logical Volumes (2 in an Extended) > All FAT32 Volumes
   
-    [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
+  - [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
 
 

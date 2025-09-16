@@ -2,6 +2,8 @@
 #pragma description Disk / Volume / Filesystem Structures (MBR, GPT, FAT32, exFAT, NTFS)
 #pragma MIME application/x-ima
 #pragma endian little
+#pragma loop_limit 16000
+
 
 // -----------------------------------------------------------------------------
 // CREDIT
@@ -29,21 +31,34 @@ import hex.provider;
 import * from DFIR.FAT32 as FAT32Pat;
 import * from DFIR.exFAT as EXFATPat;
 import * from DFIR.NTFS as NTFSPat;
+
+// ------------------------------------
+// DISABLED IMPORTS
+// REFS - UNTESTED
+// EXT4 - GROUP DESC ERRORS
+// JPEG/PNG - OFFSET ERRORS
+// ------------------------------------
 //import * from fs.ext4 as EXT4Pat;
 //import * from fs.refs as REFSPat;
-
 //import * from jpeg as JPEGPat;
 //import * from png as PNGPat;
 
 // -----------------------------------------------------------------------------
 // FWD DECs - GLOBAL
 // -----------------------------------------------------------------------------
+bool has_ext = false;
 bool has_gpt = false;
-bool other_attr = false;
-u64 partitionOffset;
+u64 partitionOffset = 0;
+u64 containerStartOffset = 0;
 
-u32 MPT_Count;
-u32 GPT_Count;
+u32 mptIndex = 0;
+u32 extIndex = 0;
+str entryName = "";
+
+u32 MPT_Count = 0;
+u32 EXT_VolCount = 0;
+u32 GPT_Count = 0;
+
 u32 memory_size 	= std::mem::size();
 str disk_path 		= hex::prv::get_information("file_path","");
 u128 sector_size 	= hex::prv::get_information("sector_size","");
@@ -303,6 +318,7 @@ struct GPT_PartitionEntry {
             else if (gpt_exfat_magic == "EXFAT   ") 
                 EXFATPat EXFAT_VOL @ GPTpartitionOffset;        	
 	    }
+	    // EXT4 PATTERN WAS INOP WHEN TESTED
 	    //(GUIDPartLabel::LINUX_FILE_SYSTEM):
 	    	//EXT4Pat EXT4_VOL @ 0x100400;
 	}
@@ -343,38 +359,71 @@ union MBRPartitionUnion {
     MPTPartLabel PartTypeLabel;  // overlay for 0x00
 };
 
-struct MPT_PartitionEntry {
-    PartitionStatus ActiveFlag 				[[comment("x80 = Active/Boot | x00 = Not Active")]];	
-    CHS_Decoder Starting_CHS 				[[comment("Legacy Cylinder Head Sector - Bit Share")]];			
-    MBRPartitionUnion Type 					[[comment("Partition Type Code - PRIMARY or EXT")]];				
-    CHS_Decoder Ending_CHS 					[[comment("Legacy Cylinder Head Sector - Bit Share")]];				
-    u32 Start_LBA 							[[comment("Logical Block Address - VOL START")]];                  	
-    u32 Total_Sectors 						[[comment("Total Sectors Allocated to VOL")]];
-    
-    if (Type.PartTypeLabel != MPTPartLabel::UNUSED_OR_HIDDEN_ENTRY) {
-    	MPT_Count += 1;
-    }
+struct PartitionTableEntry {
+    // Standard partition fields
+    PartitionStatus ActiveFlag;
+    CHS_Decoder Starting_CHS;
+    MBRPartitionUnion Type;
+    CHS_Decoder Ending_CHS;
+    u32 Start_LBA;
+    u32 Total_Sectors;
 
-    partitionOffset = Start_LBA * sector_size;
+    if (Type.PartTypeLabel != MPTPartLabel::UNUSED_OR_HIDDEN_ENTRY) {
+    	// Track Count of Logical Volumes in the Extended Container
+    	//MPT_Count += 1;
+    	if (containerStartOffset == 0) {
+        	// top-level MBR entry
+        	MPT_Count = MPT_Count + 1;
+    	} else {
+        	// a logical inside an extended container
+        	EXT_VolCount = EXT_VolCount + 1;
+    	}   
+   }
+
+    partitionOffset = containerStartOffset + (Start_LBA * sector_size);
+	
     match (Type.PartTypeLabel) {
         (PartitionTypeCode::UNUSED_ENTRY): continue;
-        (PartitionTypeCode::FAT32_SMALL | PartitionTypeCode::FAT32_SMALL_HIDDEN |
-        PartitionTypeCode::FAT32_BIG | PartitionTypeCode::FAT32_BIG_HIDDEN): 
+        (PartitionTypeCode::FAT32_SMALL | PartitionTypeCode::FAT32_BIG): {
             FAT32Pat FAT32_VOL @ partitionOffset;
-        (PartitionTypeCode::NTFS_EXFAT | PartitionTypeCode::NTFS_EXFAT_HIDDEN): {
+        }
+        (PartitionTypeCode::NTFS_EXFAT): {
             char magic[8] @ partitionOffset + 3;
             if (magic == "NTFS    ")
                 NTFSPat NTFS_VOL @ partitionOffset;
-            else if (magic == "EXFAT   ") 
-                EXFATPat EXFAT_VOL @ partitionOffset;
             else
-                std::error("Unknown MBR Partition Type Code");
+                EXFATPat EXFAT_VOL @ partitionOffset;
+        }
+        (PartitionTypeCode::EXT_PART_SMALL | PartitionTypeCode::EXT_PART_BIG): {
+            // Save parent state
+            bool parent_has_ext = has_ext;
+            has_ext = true;
+             
+            containerStartOffset = partitionOffset;
+            
+            PartitionTableEntry EXTENDED_PARTITION[2] @ partitionOffset + 446;
+            
+            has_ext = parent_has_ext;
+            
         }
         (PartitionTypeCode::GPT_DISK_STD | PartitionTypeCode::GPT_DISK_SYS): 
             // Set global flag
             has_gpt = true;
     }
-} [[name(std::format("MPT_ENTRY [{}]", std::core::array_index()))]];
+	if (!has_ext) {
+  		entryName = std::format("MPT_ENTRY [{}]", mptIndex);
+   		mptIndex += 1;
+	} else {
+    	if (std::core::array_index() <= 0) {
+        	entryName = std::format("LOGICAL_VOL (EXT) [{}]", extIndex);
+    	} else if (std::core::array_index() == 1) {
+        	entryName = "NEXT VOL POINTER (EXT)";
+    	} else {
+        	entryName = std::format("LOGICAL_VOL (EXT) [{}]", extIndex);
+    	}
+    	extIndex += 1;
+	}
+} [[name(entryName)]];
 
 // -----------------------------------------------------------------------------
 // MBR PARSER
@@ -388,7 +437,7 @@ struct MasterBootRecord {
     u8 bootstrapCodeArea2[216] 				[[comment("Boot Strapping Code")]];
     u32 diskSignature						[[comment("Disk Signature")]];
     DiskProtection diskProtection 			[[comment("Disk Protection - 0x0000=Not | 0x5A5A=Prot")]];
-    MPT_PartitionEntry MPT[4]	 			[[comment("Master Partition Table (MPT) Offset 446-509")]];
+    PartitionTableEntry PT[4]				[[comment("Master Partition Table (MPT) Offset 446-509")]];
     MBRSignature MBR_SIG 					[[comment("End of MBR - 0x55AA")]];
 };
 
@@ -454,7 +503,7 @@ if (DISK_REPORT) {
         std::print("PART_SCHEME 	 	 = UNKNOWN");
     }
 
-    // MBR Partitions
+    // MBR MPT Partitions
     for (u32 i = 0, i < MPT_Count, i = i + 1) {
         std::print("-----------------------------------------");
         std::print("-------------- MBR_MPT [{}] --------------", i);
@@ -462,9 +511,9 @@ if (DISK_REPORT) {
         
         // STATUS
         str statusStr;
-        if (DISK.MBR.MPT[i].ActiveFlag == PartitionStatus::Active) {
+        if (DISK.MBR.PT[i].ActiveFlag == PartitionStatus::Active) {
             statusStr = "ACTIVE/BOOTABLE";
-        } else if (DISK.MBR.MPT[i].ActiveFlag == PartitionStatus::Not_Active) {
+        } else if (DISK.MBR.PT[i].ActiveFlag == PartitionStatus::Not_Active) {
             statusStr = "INACTIVE/NOT_BOOTABLE";
         } else {
             statusStr = "UNKNOWN";
@@ -473,15 +522,15 @@ if (DISK_REPORT) {
 		
         // TYPE_CODE
         str typeStr;
-        if (DISK.MBR.MPT[i].Type.Part_Type == PartitionTypeCode::FAT32_SMALL) {
+        if (DISK.MBR.PT[i].Type.Part_Type == PartitionTypeCode::FAT32_SMALL) {
             typeStr = "FAT32 (CHS) (0x0B)";
-        } else if (DISK.MBR.MPT[i].Type.Part_Type == PartitionTypeCode::FAT32_BIG) {
+        } else if (DISK.MBR.PT[i].Type.Part_Type == PartitionTypeCode::FAT32_BIG) {
             typeStr = "FAT32 (LBA) (0x0C)";
-        } else if (DISK.MBR.MPT[i].Type.Part_Type == PartitionTypeCode::NTFS_EXFAT) {
+        } else if (DISK.MBR.PT[i].Type.Part_Type == PartitionTypeCode::NTFS_EXFAT) {
             typeStr = "NTFS/EXFAT (0x07)";
-        } else if (DISK.MBR.MPT[i].Type.Part_Type == PartitionTypeCode::GPT_DISK_STD) {
+        } else if (DISK.MBR.PT[i].Type.Part_Type == PartitionTypeCode::GPT_DISK_STD) {
             typeStr = "GPT_PROTECTIVE (0xEE)";
-        } else if (DISK.MBR.MPT[i].Type.Part_Type == PartitionTypeCode::EXT_PART_BIG) {
+        } else if (DISK.MBR.PT[i].Type.Part_Type == PartitionTypeCode::EXT_PART_BIG) {
             typeStr = "EXTENDED (0x0F)";
         } else {
             typeStr = "OTHER/UNKNOWN";
@@ -489,12 +538,65 @@ if (DISK_REPORT) {
         std::print(" TYPE_CODE       	 = {}", typeStr);
 		
         // LBA and size        
-        std::print(" FIRST_LBA       	 = {:02}", DISK.MBR.MPT[i].Start_LBA);
-        std::print(" LAST_LBA            = {:02}", DISK.MBR.MPT[i].Start_LBA + DISK.MBR.MPT[i].Total_Sectors - 1);
-        std::print(" VOL_SIZE		 	 = {:02} SECTORS", DISK.MBR.MPT[i].Total_Sectors);
-        std::print(" VOL_SIZE		 	 = {:.4f} GB", (DISK.MBR.MPT[i].Total_Sectors * sector_size) / 1000.0 / 1000.0 / 1000.0);
-        std::print(" VOL_SIZE		 	 = {:.4f} GiB", (DISK.MBR.MPT[i].Total_Sectors * sector_size) / 1024.0 / 1024.0 / 1024.0);
-    }
+        std::print(" FIRST_LBA       	 = {:02}", DISK.MBR.PT[i].Start_LBA);
+        std::print(" LAST_LBA            = {:02}", DISK.MBR.PT[i].Start_LBA + DISK.MBR.PT[i].Total_Sectors - 1);
+        std::print(" VOL_SIZE		 	 = {:02} SECTORS", DISK.MBR.PT[i].Total_Sectors);
+        std::print(" VOL_SIZE		 	 = {:.4f} GB", (DISK.MBR.PT[i].Total_Sectors * sector_size) / 1000.0 / 1000.0 / 1000.0);
+        std::print(" VOL_SIZE		 	 = {:.4f} GiB", (DISK.MBR.PT[i].Total_Sectors * sector_size) / 1024.0 / 1024.0 / 1024.0);
+		
+    	if (DISK.MBR.PT[i].Type.PartTypeLabel == MPTPartLabel::EXTENDED_CONT_SMALL ||
+        	DISK.MBR.PT[i].Type.PartTypeLabel == MPTPartLabel::EXTENDED_CONT_BIG) {
+        
+        	u32 logicalCount = std::core::member_count(DISK.MBR.PT[i].EXTENDED_PARTITION);
+        	//u32 logicalCount = std::mem::size(DISK.MBR.PT[i].EXTENDED_PARTITION);
+
+        	for (u32 e = 0, e < logicalCount, e = e + 1) {
+            	if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.PartTypeLabel == MPTPartLabel::UNUSED_OR_HIDDEN_ENTRY)
+                	continue;
+
+            		std::print("-----------------------------------------");
+            		std::print("---------- LOGICAL (EXT) [{}] ------------", e);
+            		std::print("-----------------------------------------");
+
+        			// STATUS
+        			str EXTstatusStr;
+        			if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].ActiveFlag == PartitionStatus::Active) {
+            			EXTstatusStr = "ACTIVE/BOOTABLE";
+        			} else if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].ActiveFlag == PartitionStatus::Not_Active) {
+            			EXTstatusStr = "INACTIVE/NOT_BOOTABLE";
+        			} else {
+            			EXTstatusStr = "UNKNOWN";
+        			}
+        			std::print(" STATUS          	 = {}", EXTstatusStr);
+		
+        			// TYPE_CODE
+        			str EXTtypeStr;
+        			if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.Part_Type == PartitionTypeCode::FAT32_SMALL) {
+            			EXTtypeStr = "FAT32 (CHS) (0x0B)";
+        			} else if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.Part_Type == PartitionTypeCode::FAT32_BIG) {
+            			EXTtypeStr = "FAT32 (LBA) (0x0C)";
+        			} else if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.Part_Type == PartitionTypeCode::NTFS_EXFAT) {
+            			EXTtypeStr = "NTFS/EXFAT (0x07)";
+        			} else if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.Part_Type == PartitionTypeCode::GPT_DISK_STD) {
+            			EXTtypeStr = "GPT_PROTECTIVE (0xEE)";
+        			} else if (DISK.MBR.PT[i].EXTENDED_PARTITION[e].Type.Part_Type == PartitionTypeCode::EXT_PART_BIG) {
+            			EXTtypeStr = "EXTENDED (0x0F)";
+        			} else {
+            			EXTtypeStr = "OTHER/UNKNOWN";
+        			}
+        			std::print(" TYPE_CODE       	 = {}", EXTtypeStr);
+
+            		std::print(" FIRST_LBA           = {}", DISK.MBR.PT[i].EXTENDED_PARTITION[e].Start_LBA);
+            		std::print(" LAST_LBA            = {}", DISK.MBR.PT[i].EXTENDED_PARTITION[e].Start_LBA + 
+                                        DISK.MBR.PT[i].EXTENDED_PARTITION[e].Total_Sectors - 1);
+            		std::print(" VOL_SIZE            = {} SECTORS", DISK.MBR.PT[i].EXTENDED_PARTITION[e].Total_Sectors);
+           			std::print(" VOL_SIZE            = {:.4f} GB", 
+               							(DISK.MBR.PT[i].EXTENDED_PARTITION[e].Total_Sectors * sector_size) / 1000.0 / 1000.0 / 1000.0);
+            		std::print(" VOL_SIZE            = {:.4f} GiB", 
+                						(DISK.MBR.PT[i].EXTENDED_PARTITION[e].Total_Sectors * sector_size) / 1024.0 / 1024.0 / 1024.0);
+        		}
+    		}
+    	}
 
     // GPT Header
     if (GPT_Count >= 1) {

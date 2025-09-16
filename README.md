@@ -77,7 +77,13 @@ Use:
 
 
   - Optional Reports
-    - Copy the console output to a file...
+    - Simply copy the console output to a file...
+
+    - To enable/disable the reports:
+      - Open each DFIR related .hexpat
+      - Find the report constant (near the top)
+        - "true" = enabled
+        - "false" = disabled
 
     [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
   

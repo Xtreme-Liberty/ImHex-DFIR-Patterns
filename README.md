@@ -111,9 +111,11 @@ VOLUME > NTFS > Data Pointer
         - "false" = disabled
 
   Example Report: exFAT
+  
   [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
   
   Example Report: 5 Logical Volumes (2 in an Extended) > All FAT32
+  
   [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
 
 

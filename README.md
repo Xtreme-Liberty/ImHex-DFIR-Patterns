@@ -19,9 +19,12 @@ Use:
 
   - DISK_PARSER.hexpat
       - Recognize MBR/GPT Disks and parse MPT/GPT
+        - Including Logical Volumes in an Extended Partition (container) 
       - Auto load file system patterns for FAT32, exFAT, NTFS formatted volumes
       - Optional Disk Report
 <img width="2572" height="1484" alt="3-DISK-HYBRID" src="https://github.com/user-attachments/assets/d864ebe5-5898-46fd-bfcf-5adef338b9fa" />
+<img width="2572" height="1484" alt="3a-DISK-MBR" src="https://github.com/user-attachments/assets/f893c375-d196-4147-b2c9-0d281c789184" />
+
 
         
   - FAT32.hexpat
@@ -36,6 +39,7 @@ Use:
 <img width="2572" height="1484" alt="4-FAT32-1_SMALL_TXT" src="https://github.com/user-attachments/assets/ca849df6-780f-437d-90ce-3a4e461f82e7" />
 <img width="2572" height="1484" alt="5-FAT32_ROOT_DIR" src="https://github.com/user-attachments/assets/eddc1be5-fd20-49e1-af38-dd302a1b6884" />
 <img width="2572" height="1484" alt="6-FAT32_SFN_POINTER" src="https://github.com/user-attachments/assets/b175e5bf-5d12-41ad-9995-b57273ea8103" />
+
 
         
   - exFAT.hexpat
@@ -67,6 +71,8 @@ Use:
 
   - Optional Reports
 
-[exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
+    [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
+  
+    [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
 
 

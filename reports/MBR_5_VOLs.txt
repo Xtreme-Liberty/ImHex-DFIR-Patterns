@@ -1,0 +1,259 @@
+﻿I:            # # # #   # #   
+I:            #     #     #   
+I:            #     #     #   
+I:            # # # #   # # # 
+I:             I  m  H  e  x    
+ 
+I: -----------------------------------------
+ 
+I:   ENTITY: _____________________
+ 
+I: EXAMINER: _____________________
+ 
+I: -----------------------------------------
+I:    LOCAL: 09/15/2025 @ 21:28:38
+I:      UTC: 09/16/2025 @ 01:28:38
+I: -----------------------------------------
+ 
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL            = PRIME1     
+I: FILE_SYSTEM          = FAT32   
+I: SERIAL_NUMBER        = 0x718E7941
+I: -----------------------------------------
+I: BYTES/SECTOR         = 512
+I: SECTORS/CLUSTER      = 08
+I: BYTES/CLUSTER        = 4096
+I: ROOT_ENTRIES         = 00
+I: CLUSTER_COUNT        = 127745
+I: -----------------------------------------
+I: VOLUME_SIZE          = 1023992 SECTORS
+I: VOLUME_SIZE          = 0.5243 GB  @ 1000
+I: VOLUME_SIZE          = 0.4883 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS     = 32
+I: FAT_COUNT            = 02
+I: FAT_SIZE             = 1000 SECTORS
+I: FAT1_START_OFF       = 1064960 | 0x104000
+I: FAT2_START_OFF       = 1576960 | 0x181000
+I: ROOT_DIR_CLUSTER     = 02
+I: ROOT_DIR_OFFSET      = 2088960 | 0x1FE000
+I: -----------------------------------------
+I: SFN_DEL(xE5)         = DETECTED
+I: LFN_DEL(xE5)         = DETECTED
+I: FAT1_EOF_COUNT       = 06
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+ 
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL            = PRIME2     
+I: FILE_SYSTEM          = FAT32   
+I: SERIAL_NUMBER        = 0x71CC3119
+I: -----------------------------------------
+I: BYTES/SECTOR         = 512
+I: SECTORS/CLUSTER      = 08
+I: BYTES/CLUSTER        = 4096
+I: ROOT_ENTRIES         = 00
+I: CLUSTER_COUNT        = 127745
+I: -----------------------------------------
+I: VOLUME_SIZE          = 1023992 SECTORS
+I: VOLUME_SIZE          = 0.5243 GB  @ 1000
+I: VOLUME_SIZE          = 0.4883 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS     = 32
+I: FAT_COUNT            = 02
+I: FAT_SIZE             = 1000 SECTORS
+I: FAT1_START_OFF       = 525352960 | 0x1F504000
+I: FAT2_START_OFF       = 525864960 | 0x1F581000
+I: ROOT_DIR_CLUSTER     = 02
+I: ROOT_DIR_OFFSET      = 526376960 | 0x1F5FE000
+I: -----------------------------------------
+I: FAT1_EOF_COUNT       = 06
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+ 
+
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL            = PRIME3     
+I: FILE_SYSTEM          = FAT32   
+I: SERIAL_NUMBER        = 0x72126AF3
+I: -----------------------------------------
+I: BYTES/SECTOR         = 512
+I: SECTORS/CLUSTER      = 08
+I: BYTES/CLUSTER        = 4096
+I: ROOT_ENTRIES         = 00
+I: CLUSTER_COUNT        = 127745
+I: -----------------------------------------
+I: VOLUME_SIZE          = 1023992 SECTORS
+I: VOLUME_SIZE          = 0.5243 GB  @ 1000
+I: VOLUME_SIZE          = 0.4883 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS     = 32
+I: FAT_COUNT            = 02
+I: FAT_SIZE             = 1000 SECTORS
+I: FAT1_START_OFF       = 1049640960 | 0x3E904000
+I: FAT2_START_OFF       = 1050152960 | 0x3E981000
+I: ROOT_DIR_CLUSTER     = 02
+I: ROOT_DIR_OFFSET      = 1050664960 | 0x3E9FE000
+I: -----------------------------------------
+I: SFN_DEL(xE5)         = DETECTED
+I: LFN_DEL(xE5)         = DETECTED
+I: FAT1_EOF_COUNT       = 06
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+ 
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL            = LOGVOL1    
+I: FILE_SYSTEM          = FAT32   
+I: SERIAL_NUMBER        = 0x7306CD67
+I: -----------------------------------------
+I: BYTES/SECTOR         = 512
+I: SECTORS/CLUSTER      = 08
+I: BYTES/CLUSTER        = 4096
+I: ROOT_ENTRIES         = 00
+I: CLUSTER_COUNT        = 127745
+I: -----------------------------------------
+I: VOLUME_SIZE          = 1023992 SECTORS
+I: VOLUME_SIZE          = 0.5243 GB  @ 1000
+I: VOLUME_SIZE          = 0.4883 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS     = 32
+I: FAT_COUNT            = 02
+I: FAT_SIZE             = 1000 SECTORS
+I: FAT1_START_OFF       = 1574977536 | 0x5DE04000
+I: FAT2_START_OFF       = 1575489536 | 0x5DE81000
+I: ROOT_DIR_CLUSTER     = 02
+I: ROOT_DIR_OFFSET      = 1576001536 | 0x5DEFE000
+I: -----------------------------------------
+I: SFN_DEL(xE5)         = DETECTED
+I: LFN_DEL(xE5)         = DETECTED
+I: FAT1_EOF_COUNT       = 06
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+ 
+
+I: -----------------------------------------
+I: ---------- FAT32 VOLUME_REPORT ----------
+I: -----------------------------------------
+I: VOL_LABEL            = LOGVOL2    
+I: FILE_SYSTEM          = FAT32   
+I: SERIAL_NUMBER        = 0x734BF58E
+I: -----------------------------------------
+I: BYTES/SECTOR         = 512
+I: SECTORS/CLUSTER      = 08
+I: BYTES/CLUSTER        = 4096
+I: ROOT_ENTRIES         = 00
+I: CLUSTER_COUNT        = 127745
+I: -----------------------------------------
+I: VOLUME_SIZE          = 1023992 SECTORS
+I: VOLUME_SIZE          = 0.5243 GB  @ 1000
+I: VOLUME_SIZE          = 0.4883 GiB @ 1024
+I: -----------------------------------------
+I: RESERVED_SECTORS     = 32
+I: FAT_COUNT            = 02
+I: FAT_SIZE             = 1000 SECTORS
+I: FAT1_START_OFF       = 2100314112 | 0x7D304000
+I: FAT2_START_OFF       = 2100826112 | 0x7D381000
+I: ROOT_DIR_CLUSTER     = 02
+I: ROOT_DIR_OFFSET      = 2101338112 | 0x7D3FE000
+I: -----------------------------------------
+I: SFN_DEL(xE5)         = DETECTED
+I: LFN_DEL(xE5)         = DETECTED
+I: FAT1_EOF_COUNT       = 06
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+I: -----------------------------------------
+I: -------------- DISK_REPORT --------------
+I: -----------------------------------------
+I: DISK_PATH            = /dev/disk6
+I: SECTOR_SIZE          = 512 BYTES
+I: DISK_SIZE            = 7864320 SECTORS
+I: DISK_SIZE            = 4.0265 GB  @ 1000
+I: DISK_SIZE            = 3.7500 GiB @ 1024
+I: DISK_PROTECT         = NOT_COPY_PROTECTED
+I: PART_SCHEME          = MBR
+I: -----------------------------------------
+I: -------------- MBR_MPT [0] --------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = FAT32 (CHS) (0x0B)
+I:  FIRST_LBA           = 2048
+I:  LAST_LBA            = 1026047
+I:  VOL_SIZE            = 1024000 SECTORS
+I:  VOL_SIZE            = 0.5243 GB
+I:  VOL_SIZE            = 0.4883 GiB
+I: -----------------------------------------
+I: -------------- MBR_MPT [1] --------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = FAT32 (CHS) (0x0B)
+I:  FIRST_LBA           = 1026048
+I:  LAST_LBA            = 2050047
+I:  VOL_SIZE            = 1024000 SECTORS
+I:  VOL_SIZE            = 0.5243 GB
+I:  VOL_SIZE            = 0.4883 GiB
+I: -----------------------------------------
+I: -------------- MBR_MPT [2] --------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = FAT32 (CHS) (0x0B)
+I:  FIRST_LBA           = 2050048
+I:  LAST_LBA            = 3074047
+I:  VOL_SIZE            = 1024000 SECTORS
+I:  VOL_SIZE            = 0.5243 GB
+I:  VOL_SIZE            = 0.4883 GiB
+
+
+I: -----------------------------------------
+I: -------------- MBR_MPT [3] --------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = OTHER/UNKNOWN
+I:  FIRST_LBA           = 3074048
+I:  LAST_LBA            = 7864319
+I:  VOL_SIZE            = 4790272 SECTORS
+I:  VOL_SIZE            = 2.4526 GB
+I:  VOL_SIZE            = 2.2842 GiB
+I: -----------------------------------------
+I: ---------- LOGICAL (EXT) [0] ------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = FAT32 (CHS) (0x0B)
+I:  FIRST_LBA           = 2048
+I:  LAST_LBA            = 1026047
+I:  VOL_SIZE            = 1024000 SECTORS
+I:  VOL_SIZE            = 0.5243 GB
+I:  VOL_SIZE            = 0.4883 GiB
+I: -----------------------------------------
+I: ---------- LOGICAL (EXT) [1] ------------
+I: -----------------------------------------
+I:  STATUS              = INACTIVE/NOT_BOOTABLE
+I:  TYPE_CODE           = OTHER/UNKNOWN
+I:  FIRST_LBA           = 1026048
+I:  LAST_LBA            = 2052095
+I:  VOL_SIZE            = 1026048 SECTORS
+I:  VOL_SIZE            = 0.5253 GB
+I:  VOL_SIZE            = 0.4893 GiB
+I: -----------------------------------------
+I: ------------------ END ------------------
+I: -----------------------------------------
+ 
+I: Pattern exited with code: 0
+I: Evaluation took 12.9959s

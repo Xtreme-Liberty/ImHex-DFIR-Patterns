@@ -2,8 +2,6 @@
 #pragma description Disk / Volume / Filesystem Structures (MBR, GPT, FAT32, exFAT, NTFS)
 #pragma MIME application/x-ima
 #pragma endian little
-#pragma loop_limit 16000
-
 
 // -----------------------------------------------------------------------------
 // CREDIT

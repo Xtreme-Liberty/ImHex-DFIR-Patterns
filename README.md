@@ -77,6 +77,7 @@ Use:
 
 
   - Optional Reports
+    - Copy the console output to a file...
 
     [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
   

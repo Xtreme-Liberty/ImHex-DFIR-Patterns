@@ -13,9 +13,7 @@
 // TODO
 // -----------------------------------------------------------------------------
 // Auto apply pattern?...
-// EXTENDED PARTITION and logical volumes in the container
 // Other File Systems for GPT Entries
-// Refine File System Detection/Match
 // -----------------------------------------------------------------------------
 // IMPORTS
 // -----------------------------------------------------------------------------

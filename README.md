@@ -27,10 +27,10 @@ Use:
       - Auto load file system patterns for FAT32, exFAT, NTFS formatted volumes
       - Optional Disk Report
 
-      - DISK > MBR/GPT
+DISK > MBR/GPT
 <img width="2572" height="1484" alt="3-DISK-HYBRID" src="https://github.com/user-attachments/assets/d864ebe5-5898-46fd-bfcf-5adef338b9fa" />
 
-      - DISK > MBR > MPT > 3 Primaries | 2 Logicals in an Extended
+DISK > MBR > MPT > 3 Primaries | 2 Logicals in an Extended
 <img width="2572" height="1484" alt="3a-DISK-MBR" src="https://github.com/user-attachments/assets/f893c375-d196-4147-b2c9-0d281c789184" />
 
 
@@ -46,13 +46,13 @@ Use:
       - D/T Conversions
       - Optional FAT32 Volume Report
 
-      - VOLUME > FAT32 > FAT1
+VOLUME > FAT32 > FAT1
 <img width="2572" height="1484" alt="4-FAT32-1_SMALL_TXT" src="https://github.com/user-attachments/assets/ca849df6-780f-437d-90ce-3a4e461f82e7" />
 
-      - VOLUME > FAT32 > Root Dir
+VOLUME > FAT32 > Root Dir
 <img width="2572" height="1484" alt="5-FAT32_ROOT_DIR" src="https://github.com/user-attachments/assets/eddc1be5-fd20-49e1-af38-dd302a1b6884" />
 
-      - VOLUME > FAT32 > Data Pointer
+VOLUME > FAT32 > Data Pointer
 <img width="2572" height="1484" alt="6-FAT32_SFN_POINTER" src="https://github.com/user-attachments/assets/b175e5bf-5d12-41ad-9995-b57273ea8103" />
 
 
@@ -67,13 +67,13 @@ Use:
       - D/T Conversions
       - Optional exFAT Volume Report
 
-      - VOLUME > exFAT
+VOLUME > exFAT
 <img width="2572" height="1484" alt="7-exFAT-1" src="https://github.com/user-attachments/assets/5ae26e10-3704-4f2b-883c-bee9f51dad89" />
 
-      - VOLUME > exFAT > Root Dir > xC0 (Stream Ext)
+VOLUME > exFAT > Root Dir > xC0 (Stream Ext)
 <img width="2572" height="1484" alt="8-exFAT_xC0" src="https://github.com/user-attachments/assets/c964be45-b461-41ab-be07-aa6478d9f237" />
 
-      - VOLUME > exFAT > Data Pointer
+VOLUME > exFAT > Data Pointer
 <img width="2572" height="1484" alt="9-exFAT-Data_Pointer" src="https://github.com/user-attachments/assets/ba97ad60-7da8-4256-a59f-2d13f4e0faca" />
 
 
@@ -89,13 +89,13 @@ Use:
       - D/T Conversions
       - Optional NTFS Volume Report
 
-      - VOLUME > NTFS > $MFT > D/T Conversion
+VOLUME > NTFS > $MFT > D/T Conversion
 <img width="2572" height="1484" alt="10-NTFS-DT" src="https://github.com/user-attachments/assets/c7208a87-f873-490f-9d39-aafbb193ad7b" />
 
-      - VOLUME > NTFS > $MFT > x80 Run List
+VOLUME > NTFS > $MFT > x80 Run List
 <img width="2572" height="1484" alt="11-NTFS-DATA_RUN" src="https://github.com/user-attachments/assets/581294b0-ccdd-454b-9d46-632d59297bbf" />
 
-      - VOLUME > NTFS > Data Pointer
+VOLUME > NTFS > Data Pointer
 <img width="2572" height="1484" alt="12-NTFS-DATA_POINTER" src="https://github.com/user-attachments/assets/f3fd1754-25a6-4fa6-88da-f9409dc1ddaa" />
 
 
@@ -110,10 +110,10 @@ Use:
         - "true" = enabled
         - "false" = disabled
 
-    - Example Report: exFAT
-    [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
+  Example Report: exFAT
+  [exFAT_Report.pdf](https://github.com/user-attachments/files/22339456/exFAT_Report.pdf)
   
-    - Example Report: 5 Logical Volumes (2 in an Extended) > All FAT32
-    [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
+  Example Report: 5 Logical Volumes (2 in an Extended) > All FAT32
+  [MBR_5_VOLs.pdf](https://github.com/user-attachments/files/22354005/MBR_5_VOLs.pdf)
 
 
